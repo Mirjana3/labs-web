@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
+body {
+  font-family: 'Abel', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 100;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+a.image-popup-vertical-fit {
+  cursor: -webkit-zoom-in;
+}
+
+.img-gallery-magnific {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.magnific-img {
+  width: 30%;
+  min-width: 250px;
+}
+
+.magnific-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.magnific-img img:hover {
+  transform: scale(1.03);
+}
+
+.magnific-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.magnific-img img {
+  transition: all 0.3s ease;
+}
+
+.magnific-img:hover img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+
+.galerija {
+  margin: 0 auto 50px auto;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.galerija h1 {
+  color: darkblue;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.galerija_slika {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galerija_slika img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.galerija_slika:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.galerija_slika:hover img {
+  transform: scale(1.05);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Grid kontejner */
+.img-gallery-magnific {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 0 auto;
+}
+
+/* Responzivnost */
+@media (max-width: 900px) {
+  .img-gallery-magnific {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 slike po redu */
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .img-gallery-magnific {
+    grid-template-columns: 1fr;
+    /* 1 slika po redu */
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .close {
+    font-size: 30px;
+    top: 10px;
+    right: 20px;
+  }
+}
+
+/* Lightbox cursor */
+a.image-popup-vertical-fit {
+  cursor: zoom-in;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    background: #222;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
