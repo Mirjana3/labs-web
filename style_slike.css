@@ -182,13 +182,3 @@ a.image-popup-vertical-fit {
 a.image-popup-vertical-fit {
   cursor: zoom-in;
 }
-
-footer {
-    margin-top: 30px;
-    padding: 10px;
-    background: #222;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
