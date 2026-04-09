@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Filomovi">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style_slike.css">
+    <title>Najbolji filmovi</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-top">
+            <div class="menu-wrapper">
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="menu-btn"></label>
+                <nav>
+                    <ul class="nav-menu">
+                        <li class="dropout">
+                            <h2 class="nav-toggle" tabindex="0"></h2>
+                            <ul class="dropdown-content">
+                                <li><a href="index.html">Pocetna</a></li>
+                                <li><a href="slike.html">Galerija</a></li>
+                                <li><a href="grafikon.html">Grafikoni</a></li>
+                                <li><a href="/slike">Slike</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <h1>Najbolji filmovi</h1>
+        </div>
+    </header>
+
+    <main>
+        <h1>Galerija slika</h1>
+        <section class="gallery">
+            <% images.forEach(image=> { %>
+                <figure>
+                    <img src="<%= image.url %>" alt="<%= image.title %>">
+                    <figcaption>
+                        <%= image.title %>
+                    </figcaption>
+                </figure>
+                <% }); %>
+        </section>
+
+    </main>
+</body>
+
+</html>
