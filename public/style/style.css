@@ -133,19 +133,18 @@ nav {
 }
 
 .table-wrapper {
-    flex: 1 1 60%; 
+    flex: 1 1 60%;
     min-width: 300px;
     overflow-x: auto;
     background: white;
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 1002;
 }
 
 .table-wrapper table {
     border-collapse: collapse;
     width: 100%;
-    min-width: 500px; 
+    min-width: 500px;
 }
 
 .main-content th,
@@ -187,7 +186,8 @@ aside {
 
 /* Aside sa slikama filmova */
 .film-aside {
-    flex: 1 1 35%; /* zauzima ~35% prostora */
+    flex: 1 1 35%;
+    /* zauzima ~35% prostora */
     min-width: 200px;
 }
 
@@ -202,7 +202,7 @@ aside {
     text-align: center;
 }
 
-.film-aside img {    
+.film-aside img {
     width: 100%;
     border-radius: 8px;
 }
@@ -325,6 +325,7 @@ button:hover {
     .form-flex button {
         width: 100%;
     }
+
     .table-wrapper {
         width: 100%;
     }
@@ -332,6 +333,17 @@ button:hover {
     .film-aside {
         width: 100%;
         margin-top: 20px;
+    }
+
+    .menu-wrapper {
+        position: relative;
+        z-index: 3000;
+    }
+
+    nav {
+        position: absolute;
+        z-index: 3000;
+        background: white;
     }
 
 }
@@ -384,6 +396,17 @@ button:hover {
 
     .nav-menu a:hover {
         background: rgba(0, 0, 0, 0.05);
+    }
+
+    .menu-wrapper {
+        position: relative;
+        z-index: 3000;
+    }
+
+    nav {
+        position: absolute;
+        z-index: 3000;
+        background: white;
     }
 }
 
