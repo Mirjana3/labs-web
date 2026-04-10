@@ -33,22 +33,39 @@ body {
     );
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     animation: rotateChart 1.5s ease;
+    position: relative;
 }
 
 .tooltip {
     position: absolute;
-    background: rgba(0,0,0,0.85);
-    position: relative;
+    background: rgba(20, 20, 20, 0.95);
     color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
     opacity: 0;
-    transition: 0.3s;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
+.tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(20,20,20,0.95) transparent transparent transparent;
+}
+
+/* show tooltip on hover */
 .pie-chart:hover .tooltip {
     opacity: 1;
+    transform: translateY(0);
 }
 
 
