@@ -267,7 +267,6 @@ button:hover {
         display: none;
         flex-direction: column;
         background: white;
-        position: absolute;
         top: 60px;
         left: 0;
         width: 100%;
