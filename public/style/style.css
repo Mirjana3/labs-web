@@ -263,7 +263,7 @@ button:hover {
     }
 
     /* Meni po defaultu skriven */
-    nav-menu {
+    .nav-menu {
         display: none;
         /* skriven po defaultu */
         flex-direction: column;
