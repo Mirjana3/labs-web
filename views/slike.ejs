@@ -114,8 +114,9 @@
     <main>
         <h1>Galerija slika</h1>
         <section class="gallery">
-            <% images.forEach(image=> { %>
-                <a href="#img-<%= image.id %>" class="gallery-item">
+            <% images.forEach((image, index)=> { %>
+
+                <a href="#img-<%= index %>" class="gallery-item">
                     <figure>
                         <img src="<%= image.url %>" alt="<%= image.title %>">
                         <figcaption>
@@ -124,10 +125,11 @@
                     </figure>
                 </a>
 
-                <div id="img-<%= image.id %>" class="lightbox">
+                <div id="img-<%= index %>" class="lightbox">
                     <a href="#" class="close">&times;</a>
                     <img src="<%= image.url %>" alt="<%= image.title %>">
                 </div>
+
                 <% }); %>
         </section>
     </main>
