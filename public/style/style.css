@@ -14,6 +14,7 @@ header {
     background: linear-gradient(135deg, #CE8946, #D4AF37);
     color: white;
     padding: 15px 20px;
+    position: relative;
 }
 
 .header-top {
@@ -71,6 +72,7 @@ header h1 {
 
 nav {
     overflow: hidden;
+    position: absolute;
     top: 60px;
     left: 0;
     width: 200px;
