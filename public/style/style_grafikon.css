@@ -8,9 +8,9 @@
     --chart-size: 320px;
 }
 
-
 body {
-    font-family: 'Abel', sans-serif;    margin: 0;
+    font-family: 'Abel', sans-serif;
+    margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     text-align: center;
@@ -26,20 +26,17 @@ body {
     height: var(--chart-size);
     margin: 2rem auto;
     border-radius: 50%;
-    position: relative;
-    background: conic-gradient(
-        var(--color1) 0% 30%,
-        var(--color2) 30% 55%,
-        var(--color3) 55% 70%,
-        var(--color4) 70% 100%
-    );
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    background: conic-gradient(var(--color1) 0% 30%,
+            var(--color2) 30% 55%,
+            var(--color3) 55% 70%,
+            var(--color4) 70% 100%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     animation: rotateChart 1.5s ease;
 }
 
 .tooltip {
     position: absolute;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.85);
     color: #fff;
     padding: 6px 10px;
     border-radius: 6px;
@@ -53,50 +50,46 @@ body {
 }
 
 
-.t1 { top: 10%; left: 60%; }
-.t2 { top: 60%; left: 70%; }
-.t3 { top: 70%; left: 20%; }
-.t4 { top: 20%; left: 10%; }
-
-
-.bar-chart {
-    display: none;
-    justify-content: space-around;
-    align-items: flex-end;
-    height: 300px;
-    margin-top: 3rem;
+.t1 {
+    top: 10%;
+    left: 60%;
 }
 
-.bar {
-    width: 60px;
-    height: var(--value);
-    background: linear-gradient(to top, var(--color1), var(--color2));
-    border-radius: 10px;
-    position: relative;
-    animation: grow 1.5s ease forwards;
-    transition: transform 0.3s ease;
+.t2 {
+    top: 60%;
+    left: 70%;
 }
 
-.bar span {
-    position: absolute;
-    bottom: -25px;
-    width: 100%;
-    font-size: 12px;
+.t3 {
+    top: 70%;
+    left: 20%;
 }
 
-.bar:hover {
-    transform: scale(1.1);
-    background: var(--color4);
+.t4 {
+    top: 20%;
+    left: 10%;
 }
+
+
 
 @keyframes grow {
-    from { height: 0; }
-    to { height: var(--value); }
+    from {
+        height: 0;
+    }
+
+    to {
+        height: var(--value);
+    }
 }
 
 @keyframes rotateChart {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 768px) {
