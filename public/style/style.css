@@ -71,7 +71,6 @@ header h1 {
 
 nav {
     overflow: hidden;
-    position: absolute;
     top: 60px;
     left: 0;
     width: 200px;
