@@ -7,14 +7,20 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     text-align: center;
+    padding-top:80px;
+    padding-bottom: 60px;
 }
 
 /* Header i navigacija */
 header {
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index:1000;
     background: linear-gradient(135deg, #CE8946, #D4AF37);
     color: white;
     padding: 15px 20px;
-    position: relative;
 }
 
 .header-top {
