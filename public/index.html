@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Filomovi">
 	<link rel="stylesheet" href="style/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 	<title>Najbolji filmovi</title>
 </head>
 
@@ -30,6 +31,12 @@
 				</nav>
 			</div>
 			<h1>Najbolji filmovi</h1>
+
+			<!-- Košarica -->
+			<button id="btn-cart" class="btn-cart-header">
+				🎬 Košarica
+				<span id="cart-number" class="cart-badge">0</span>
+			</button>
 		</div>
 	</header>
 
@@ -225,10 +232,8 @@
 			<h3>Galerija filmova</h3>
 
 			<figure>
-				<img class="img-cinema" src="/images/netflix-movies.jpg" alt="Film 1" width="100"
-					height="100">
-				<img class="img-cinema" src="/images/cinema-picture.jpg" alt="Film 2" width="100"
-					height="100">
+				<img class="img-cinema" src="/images/netflix-movies.jpg" alt="Film 1" width="100" height="100">
+				<img class="img-cinema" src="/images/cinema-picture.jpg" alt="Film 2" width="100" height="100">
 			</figure>
 	</section>
 
@@ -242,12 +247,138 @@
 		<p>Ovdje se nalazi clanak s vaznim informacijama.</p>
 	</article>
 
+	<!-- Zad1 -->
+	<section class="movies-display" id="display-movies">
+		<h2> Prikaz filmova </h2>
+		<p class="description">
+			Podaci se dohvaćaju iz <code>movies.csv</code> pomoću <code>fetch()</code> i
+			<code>PapaParse</code> biblioteke. Prikazuje se prvih 10 filmova.
+		</p>
+		<div class="table-wrapper">
+			<table id="filmovi-tablica">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Naslov</th>
+						<th>Žanr</th>
+						<th>Godina</th>
+						<th>Trajanje</th>
+						<th>Zemlja</th>
+						<th>Ocjena</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<!-- Zad2 -->
+	<section class="movies-display" id="display-filteri">
+		<h2> Filtriranje filmova</h2>
+		<p class="lv3-opis">
+			Odaberi kriterije i pritisni <strong>Filtriraj</strong>.
+			Rezultati se prikazuju ispod bez osvježavanja stranice.
+		</p>
+
+		<div class="filter-blok">
+
+			<!-- Filter 1: Žanr – select (padajući izbornik) -->
+			<div class="filter-stavka">
+				<label for="filter-zanr">Žanr:</label>
+				<select id="filter-zanr">
+					<option value="">— Svi žanrovi —</option>
+
+				</select>
+			</div>
+
+			<!-- Filter 2: Godina od – number input (tekstualno polje) -->
+			<div class="filter-stavka">
+				<label for="filter-godina">Godina od:</label>
+				<input type="number" id="filter-godina" placeholder="npr. 1990" min="1900" max="2024">
+			</div>
+
+			<!-- Filter 3: Minimalna ocjena – range slider -->
+			<div class="filter-stavka">
+				<label for="filter-ocjena">
+					Minimalna ocjena:
+					<strong id="ocjena-vrijednost">0.0</strong>
+				</label>
+				<input type="range" id="filter-ocjena" min="0" max="10" step="0.1" value="0">
+			</div>
+
+		</div>
+
+		<div class="filter-gumbi">
+			<button id="btn-filtriraj" class="btn-glavni">Filtriraj</button>
+			<button id="btn-reset" class="btn-sekundarni">Resetiraj</button>
+		</div>
+
+		<!-- Informacija o broju rezultata -->
+		<p id="rezultati-info" class="rezultati-info"></p>
+
+		<!-- Tablica filtriranih rezultata s gumbom Dodaj (Zadatak 3) -->
+		<div class="table-wrapper">
+			<table id="filtrirano-tablica">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Naslov</th>
+						<th>Žanr</th>
+						<th>Godina</th>
+						<th>Trajanje</th>
+						<th>Zemlja</th>
+						<th>Ocjena</th>
+						<th>Košarica</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Dinamički popunjava script.js -->
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+
+	<!-- Zad3 -->
+	<aside id="kosarica-aside" class="kosarica-aside">
+
+		<div class="kosarica-zaglavlje">
+			<h3>🎬 Moja košarica</h3>
+			<button id="btn-zatvori-kosaricu" class="btn-zatvori" title="Zatvori">✕</button>
+		</div>
+
+		<!-- Lista odabranih filmova – dinamički popunjava script.js -->
+		<ul id="lista-kosarice" class="lista-kosarice"></ul>
+
+		<div class="kosarica-podnozje">
+			<button id="btn-potvrdi" class="btn-glavni btn-potvrdi">
+				✓ Potvrdi posudbu
+			</button>
+		</div>
+
+	</aside>
+
+
+	<!-- ============================================================
+       Modalni prozor – prikazuje se nakon potvrde košarice
+       ============================================================ -->
+	<div id="modal" class="modal-overlay">
+		<div class="modal-sadrzaj">
+			<div class="modal-ikona">✓</div>
+			<h3>Uspjeh!</h3>
+			<p id="modal-poruka"></p>
+			<button id="btn-zatvori-modal" class="btn-glavni">Zatvori</button>
+		</div>
+	</div>
 
 	<!--dodati odgovarajuće elemente na temelju danog zadatka: tablice, slike, tekst
 		Nepotrebno obrisati! -->
 	<footer>
 		<p>&copy; 2025. Web Programiranje. Sva prava pridrzana.</p>
 	</footer>
+
+	<script src="script.js"></script>
 </body>
 
 </html>
