@@ -250,7 +250,7 @@ button {
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #e94560;
 }
 
 /* Responzivnost */
@@ -663,7 +663,7 @@ button:hover {
     color: #fff;
     position: relative;
     z-index: 2;
-    margin-top: 35px;
+    margin-top: 40px;
 }
 
 .kosarica-zaglavlje h3 {
@@ -683,7 +683,6 @@ button:hover {
 }
 
 .btn-zatvori:hover {
-    color: #e94560;
     transform: scale(1.1);
     transition: 0.2s;
 }
