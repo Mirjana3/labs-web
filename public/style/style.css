@@ -450,6 +450,13 @@ button:hover {
         z-index: 20;
     }
 
+    .btn-dodaj {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-width: 2px;
+    border-radius: 6px;
+  }
+
 }
 
 /* Za male mobitele (najmanji prozori) */
