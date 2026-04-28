@@ -198,3 +198,33 @@ document.getElementById('btn-cart').addEventListener('click', () => {
 document.getElementById('btn-zatvori-kosaricu').addEventListener('click', () => {
   document.getElementById('kosarica-aside').classList.remove('otvorena');
 });
+
+document.getElementById('btn-potvrdi').addEventListener('click', () => {
+  if (kosarica.length === 0) {
+    alert("Košarica je prazna!");
+    return;
+  }
+
+  // poruka
+  document.getElementById('modal-poruka').textContent =
+    `Uspješno ste posudili ${kosarica.length} filmova!`;
+
+  // prikaži modal
+  document.getElementById('modal').classList.add('vidljiv');
+
+  // OČISTI KOŠARICU
+  kosarica = [];
+
+  osvjeziKosaricu();
+
+  // resetiraj button-e "Dodaj"
+  document.querySelectorAll('.btn-dodaj').forEach(btn => {
+    btn.disabled = false;
+    btn.classList.remove('dodan');
+    btn.textContent = '+ Dodaj';
+  });
+});
+
+document.getElementById('btn-zatvori-modal').addEventListener('click', () => {
+  document.getElementById('modal').classList.remove('vidljiv');
+});
