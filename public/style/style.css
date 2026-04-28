@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
 /* Opći stilovi */
 body {
     font-family: 'Abel', sans-serif;
@@ -352,6 +360,68 @@ button:hover {
         left: 0;
         width: 200px;
     }
+
+    .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    min-width: 700px; /* omogućava scroll umjesto pucanja layouta */
+  }
+
+  th, td {
+    font-size: 12px;
+    padding: 8px;
+    white-space: nowrap;
+  }
+
+.filter-blok {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .filter-stavka {
+    width: 100%;
+  }
+
+  .filter-stavka select,
+  .filter-stavka input {
+    width: 100%;
+  }
+
+  .filter-gumbi {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-glavni,
+  .btn-sekundarni {
+    width: 100%;
+  }
+
+.kosarica-aside {
+    width: 100%;
+    right: -100%;
+  }
+
+  .kosarica-aside.otvorena {
+    right: 0;
+  }
+
+  .kosarica-zaglavlje h3 {
+    font-size: 0.95rem;
+  }
+
+  .lista-kosarice li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .btn-ukloni {
+    align-self: flex-end;
+  }
 
 }
 
