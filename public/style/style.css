@@ -663,6 +663,7 @@ button:hover {
     color: #fff;
     position: relative;
     z-index: 2;
+    margin-top: 35px;
 }
 
 .kosarica-zaglavlje h3 {
