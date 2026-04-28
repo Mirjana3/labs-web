@@ -668,16 +668,20 @@ button:hover {
 }
 
 .btn-zatvori {
-    background: none;
+    background: transparent;
     border: none;
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     cursor: pointer;
-    transition: color 0.2s;
+    padding: 4px 10px;
+    line-height: 1;
+    font-weight: bold;
 }
 
 .btn-zatvori:hover {
     color: #e94560;
+    transform: scale(1.1);
+    transition: 0.2s;
 }
 
 .lista-kosarice {
