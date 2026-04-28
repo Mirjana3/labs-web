@@ -318,6 +318,7 @@ button:hover {
     right: -100%;
     border-radius: 0;
     border-left: none;
+    z-index: 2000;
   }
 
   .kosarica-aside.otvorena {
@@ -657,9 +658,11 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 20px;
+    padding: 20px 20px; /* povećaj padding */
     background: #1a1a2e;
     color: #fff;
+    position: relative;
+    z-index: 2;
 }
 
 .kosarica-zaglavlje h3 {
