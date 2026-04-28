@@ -256,207 +256,112 @@ button:hover {
 /* Responzivnost */
 @media (max-width: 768px) {
 
-    /* Hamburger gumb */
-    .menu-btn {
-        display: inline-block;
-        font-size: 20px;
-        padding: 8px 15px;
-        cursor: pointer;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        color: white;
-        user-select: none;
-    }
+  /* ===== GLOBAL MOBILE FIX ===== */
+  body {
+    text-align: left;
+    padding-bottom: 100px;
+  }
 
-    .menu-btn::before {
-        content: "☰";
-        font-size: 24px;
-    }
+  /* ===== TABLE FIX (bez zgužvanja) ===== */
+  .table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
 
-    #menu-toggle:checked+.menu-btn::before {
-        content: "✖";
-    }
+  table {
+    min-width: 700px;
+  }
 
-    /* Meni po defaultu skriven */
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        background: white;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        border-radius: 0 10px 10px 0;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-        z-index: 10;
-    }
+  th, td {
+    font-size: 12px;
+    padding: 8px;
+    white-space: nowrap;
+  }
 
-    #menu-toggle:checked+.menu-btn+nav .nav-menu {
-        display: flex;
-        /* prikaz kada je kliknut */
-    }
+  /* ===== MAIN LAYOUT ===== */
+  .main-content {
+    flex-direction: column;
+  }
 
-    .nav-menu a {
-        display: block;
-        padding: 10px 15px;
-        text-decoration: none;
-        color: black;
-    }
+  .film-aside {
+    width: 100%;
+  }
 
-    .nav-menu a:hover {
-        background: rgba(0, 0, 0, 0.05);
-    }
+  /* ===== FILTERI ===== */
+  .filter-blok {
+    flex-direction: column;
+    gap: 12px;
+  }
 
-    .main-content {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .filter-stavka {
+    width: 100%;
+  }
 
-    .main-content table,
-    .film-aside {
-        width: 100%;
-    }
+  .filter-stavka input,
+  .filter-stavka select {
+    width: 100%;
+  }
 
+  .filter-gumbi {
+    flex-direction: column;
+  }
 
-    .data-container {
-        flex-direction: column;
-        align-items: center;
-    }
+  .btn-glavni,
+  .btn-sekundarni {
+    width: 100%;
+  }
 
-    .analysis-flex {
-        flex-direction: column;
-        align-items: center;
-    }
+  /* ===== KOŠARICA ===== */
+  .kosarica-aside {
+    width: 100%;
+    height: 100dvh;
+    right: -100%;
+    border-radius: 0;
+    border-left: none;
+  }
 
-    .nav-menu {
-        flex-direction: column;
-        text-align: center;
-    }
+  .kosarica-aside.otvorena {
+    right: 0;
+  }
 
-    .form-flex input,
-    .form-flex button {
-        width: 100%;
-    }
+  .lista-kosarice {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 120px; /* BITNO */
+  }
 
-    .table-wrapper {
-        width: 100%;
-    }
+  .lista-kosarice li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .film-aside {
-        width: 100%;
-        margin-top: 20px;
-    }
+  .btn-ukloni {
+    align-self: flex-end;
+  }
 
-    .menu-wrapper {
-        position: relative;
-        z-index: 3000;
-    }
+  /* ===== FIX ZA POTVRDU (GLAVNI POPRAVAK) ===== */
+  .kosarica-podnozje {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 16px;
+    border-top: 1px solid #eee;
+    z-index: 50;
+  }
 
-    nav {
-        position: absolute;
-        z-index: 9999;
-        background: white;
-        top: 60px;
-        left: 0;
-        width: 200px;
-    }
+  .btn-potvrdi {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
-    .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    table {
-        min-width: 700px;
-        /* omogućava scroll umjesto pucanja layouta */
-    }
-
-    th,
-    td {
-        font-size: 12px;
-        padding: 8px;
-        white-space: nowrap;
-    }
-
-    .filter-blok {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .filter-stavka {
-        width: 100%;
-    }
-
-    .filter-stavka select,
-    .filter-stavka input {
-        width: 100%;
-    }
-
-    .filter-gumbi {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .btn-glavni,
-    .btn-sekundarni {
-        width: 100%;
-    }
-
-    .kosarica-aside {
-        width: 100%;
-        height: 100dvh;
-        right: -100%;
-        border-left: none;
-        border-radius: 0;
-    }
-
-    .kosarica-aside.otvorena {
-        right: 0;
-    }
-
-    .kosarica-zaglavlje h3 {
-        font-size: 0.95rem;
-    }
-
-    .lista-kosarice {
-        flex: 1;
-        overflow-y: auto;
-        padding-bottom: 80px;
-    }
-
-    .lista-kosarice li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    .btn-ukloni {
-        align-self: flex-end;
-    }
-
-    .kosarica-podnozje {
-        position: sticky;
-        bottom: 0;
-        background: white;
-        z-index: 10;
-        padding: 12px;
-        border-top: 1px solid #eee;
-    }
-
-    .btn-potvrdi {
-        width: 100%;
-        position: relative;
-        z-index: 20;
-    }
-
-    .btn-dodaj {
+  /* ===== DODAJ BUTTON ===== */
+  .btn-dodaj {
     padding: 8px 16px;
     font-size: 0.9rem;
     border-width: 2px;
     border-radius: 6px;
+    width: 100%;
   }
-
 }
 
 /* Za male mobitele (najmanji prozori) */
