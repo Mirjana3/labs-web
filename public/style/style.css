@@ -746,12 +746,21 @@ button:hover {
 }
 
 .kosarica-podnozje {
-    padding: 16px;
+    padding: 20px;
     border-top: 1px solid #eee;
+    background: #fff;
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
 }
 
 .btn-potvrdi {
     width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 10px;
+    display: block;
 }
 
 
