@@ -1,0 +1,399 @@
+<?php
+session_start();
+require_once '../includes/db.php';
+require_once '../includes/auth.php';
+?>
+
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Filomovi">
+	<link rel="stylesheet" href="style/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+	<title>Najbolji filmovi</title>
+</head>
+
+<body>
+	<header>
+		<div class="header-top">
+			<div class="menu-wrapper">
+				<input type="checkbox" id="menu-toggle">
+				<label for="menu-toggle" class="menu-btn"></label>
+				<nav>
+					<ul class="nav-menu">
+						<li class="dropout">
+							<h2 class="nav-toggle" tabindex="0"></h2>
+							<ul class="dropdown-content">
+								<li><a href="index.php">Početna</a></li>
+								<li><a href="filmovi.php">🎬 Filmovi (PHP)</a></li>
+								<li><a href="galerija.php">🖼 Galerija (PHP)</a></li>
+						<li><a href="slike.php">Galerija (statički)</a></li>
+						<li><a href="grafikon.php">Grafikoni</a></li>
+								<?php if (isLoggedIn()): ?>
+								<li><a href="logout.php">Odjava (<?= htmlspecialchars(currentUsername()) ?>)</a></li>
+								<?php else: ?>
+								<li><a href="login.php">🔐 Prijava</a></li>
+								<?php endif; ?>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<h1>Najbolji filmovi</h1>
+
+			<!-- Košarica -->
+			<button id="btn-cart" class="btn-cart-header">
+				🎬 Košarica
+				<span id="cart-number" class="cart-badge">0</span>
+			</button>
+		</div>
+	</header>
+
+	<?php if (isLoggedIn()): ?>
+		<div style="background:#eafaf1;border-bottom:1px solid #2ecc71;padding:8px 20px;text-align:center;font-size:.9rem;color:#1e8449;">
+    	Prijavljeni ste kao <strong><?= htmlspecialchars(currentUsername()) ?></strong>
+    	<?= isAdmin() ? '<span style="background:#e94560;color:#fff;border-radius:4px;padding:2px 8px;margin-left:6px;font-size:.78rem">ADMIN</span>' : '' ?>
+    	&nbsp;|&nbsp;<a href="filmovi.php" style="color:#e94560;font-weight:600">Moja videoteka</a>
+    	&nbsp;|&nbsp;<a href="logout.php" style="color:#555">Odjava</a>
+		</div>
+	<?php else: ?>
+	<div style="background:#e8f4fd;border-bottom:1px solid #3498db;padding:8px 20px;text-align:center;font-size:.9rem;color:#2471a3;">
+    	<a href="login.php" style="color:#e94560;font-weight:600">Prijavite se</a> za osobnu videoteku i ocjenjivanje slika.
+	</div>
+	<?php endif; ?>
+
+	<h1>Popis Filmova</h1>
+
+	<section class="main-content">
+		<div class="table-wrapper">
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Naslov</th>
+					<th>Godina</th>
+					<th>Žanr</th>
+					<th>Trajanje</th>
+					<th>Država</th>
+					<th>Ocjena</th>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Bugs Bunny's Third Movie</td>
+					<td>1982</td>
+					<td>Animacija</td>
+					<td>76</td>
+					<td>SAD</td>
+					<td>7.7</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>18 anni tra una settimana</td>
+					<td>1991</td>
+					<td>Drama</td>
+					<td>98</td>
+					<td>Italija</td>
+					<td>6.5</td>
+				</tr>
+				<tr>
+					<td>17</td>
+					<td>Ride a Wild Pony</td>
+					<td>1976</td>
+					<td>Romantični</td>
+					<td>91</td>
+					<td>SAD</td>
+					<td>5.7</td>
+				</tr>
+				<tr>
+					<td>18</td>
+					<td>Diner</td>
+					<td>1982</td>
+					<td>Komedija</td>
+					<td>95</td>
+					<td>SAD</td>
+					<td>7.0</td>
+				</tr>
+				<tr>
+					<td>20</td>
+					<td>A che servono questi quattrini?</td>
+					<td>1942</td>
+					<td>Komedija</td>
+					<td>85</td>
+					<td>Italija</td>
+					<td>5.9</td>
+				</tr>
+				<tr>
+					<td>22</td>
+					<td>A ciascuno il suo</td>
+					<td>1967</td>
+					<td>Drama</td>
+					<td>93</td>
+					<td>Italija</td>
+					<td>7.6</td>
+				</tr>
+				<tr>
+					<td>23</td>
+					<td>Dead-Bang</td>
+					<td>1989</td>
+					<td>Krimić</td>
+					<td>109</td>
+					<td>SAD</td>
+					<td>6.0</td>
+				</tr>
+				<tr>
+					<td>24</td>
+					<td>A... come assassino</td>
+					<td>1966</td>
+					<td>Triler</td>
+					<td>80</td>
+					<td>Italija</td>
+					<td>5.2</td>
+				</tr>
+				<tr>
+					<td>26</td>
+					<td>At Close Range</td>
+					<td>1986</td>
+					<td>Drama</td>
+					<td>115</td>
+					<td>SAD</td>
+					<td>7.5</td>
+				</tr>
+				<tr>
+					<td>30</td>
+					<td>A Ghentar si muore facile</td>
+					<td>1968</td>
+					<td>Avantura</td>
+					<td>101</td>
+					<td>Italija</td>
+					<td>4.8</td>
+				</tr>
+				<tr>
+					<td>32</td>
+					<td>Sleeping with the Enemy</td>
+					<td>1990</td>
+					<td>Drama</td>
+					<td>96</td>
+					<td>SAD</td>
+					<td>5.0</td>
+				</tr>
+				<tr>
+					<td>34</td>
+					<td>In Bed With Madonna</td>
+					<td>1990</td>
+					<td>Dokumentarni</td>
+					<td>111</td>
+					<td>SAD</td>
+					<td>5.3</td>
+				</tr>
+				<tr>
+					<td>36</td>
+					<td>Bowery at Midnight</td>
+					<td>1942</td>
+					<td>Horor</td>
+					<td>62</td>
+					<td>SAD</td>
+					<td>5.1</td>
+				</tr>
+				<tr>
+					<td>37</td>
+					<td>A mezzanotte va la ronda del piacere</td>
+					<td>1975</td>
+					<td>Komedija</td>
+					<td>100</td>
+					<td>Italija</td>
+					<td>5.8</td>
+				</tr>
+				<tr>
+					<td>38</td>
+					<td>Mr. Majestyk</td>
+					<td>1974</td>
+					<td>Akcija</td>
+					<td>105</td>
+					<td>SAD</td>
+					<td>6.2</td>
+				</tr>
+				<tr>
+					<td>45</td>
+					<td>Warning Sign</td>
+					<td>1985</td>
+					<td>Akcija</td>
+					<td>99</td>
+					<td>SAD</td>
+					<td>4.8</td>
+				</tr>
+				<tr>
+					<td>47</td>
+					<td>About Last Night</td>
+					<td>1986</td>
+					<td>Komedija</td>
+					<td>113</td>
+					<td>SAD</td>
+					<td>5.9</td>
+				</tr>
+				<tr>
+					<td>49</td>
+					<td>Fail-Safe</td>
+					<td>1964</td>
+					<td>Drama</td>
+					<td>110</td>
+					<td>SAD</td>
+					<td>8.2</td>
+				</tr>
+				<tr>
+					<td>51</td>
+					<td>Some Like It Hot</td>
+					<td>1959</td>
+					<td>Komedija</td>
+					<td>120</td>
+					<td>SAD</td>
+					<td>9.1</td>
+				</tr>
+			</table>
+		</div>
+
+		<aside aria-label="Galerija filmova" class="film-aside">
+			<h3>Galerija filmova</h3>
+
+			<figure>
+				<img class="img-cinema" src="images/netflix-movies.jpg" alt="Film 1" width="100" height="100">
+				<img class="img-cinema" src="images/cinema-picture.jpg" alt="Film 2" width="100" height="100">
+			</figure>
+	</section>
+
+	<section aria-labelledby="glavna-sekcija"> <!-- dodati neke od obilježja za ARIA-->
+		<h2>Ovo je glavna sekcija</h2>
+		<p>HTML5 omogucava semanticku strukturu koja poboljsava pristupacnost i SEO.</p>
+	</section>
+	<!-- dodati jedan aside na desnoj strani s ugrađenom google mapom/filmom ili slično-->
+	<article aria-labelledby="vijesti">
+		<h2>Najnovije vijesti</h2>
+		<p>Ovdje se nalazi clanak s vaznim informacijama.</p>
+	</article>
+
+	<!-- Zad1 -->
+	<section class="movies-display" id="display-movies">
+		<h2> Prikaz filmova </h2>
+		<div class="table-wrapper">
+			<table id="filmovi-tablica">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Naslov</th>
+						<th>Žanr</th>
+						<th>Godina</th>
+						<th>Trajanje</th>
+						<th>Zemlja</th>
+						<th>Ocjena</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<!-- Zad2 -->
+	<section class="movies-display" id="display-filteri">
+		<h2> Filtriranje filmova</h2>
+		<p class="description">
+			Odaberi kriterije i pritisni <strong>Filtriraj</strong>.
+			Rezultati se prikazuju ispod bez osvježavanja stranice.
+		</p>
+
+		<div class="filter-blok">
+
+			<!-- Filter 1: Žanr – select (padajući izbornik) -->
+			<div class="filter-stavka">
+				<label for="filter-zanr">Žanr:</label>
+				<select id="filter-zanr">
+					<option value="">— Svi žanrovi —</option>
+
+				</select>
+			</div>
+
+			<!-- Filter 2: Godina od – number input (tekstualno polje) -->
+			<div class="filter-stavka">
+				<label for="filter-godina">Godina od:</label>
+				<input type="number" id="filter-godina" placeholder="npr. 1990" min="1900" max="2024">
+			</div>
+
+			<!-- Filter 3: Minimalna ocjena – range slider -->
+			<div class="filter-stavka">
+				<label for="filter-ocjena">
+					Minimalna ocjena:
+					<strong id="ocjena-vrijednost">0.0</strong>
+				</label>
+				<input type="range" id="filter-ocjena" min="0" max="10" step="0.1" value="0">
+			</div>
+
+		</div>
+
+		<div class="filter-gumbi">
+			<button id="btn-filtriraj" class="btn-glavni">Filtriraj</button>
+			<button id="btn-reset" class="btn-sekundarni">Resetiraj</button>
+		</div>
+
+		<!-- Informacija o broju rezultata -->
+		<p id="rezultati-info" class="rezultati-info"></p>
+
+		<!-- Tablica filtriranih rezultata s gumbom Dodaj (Zadatak 3) -->
+		<div class="table-wrapper">
+			<table id="filtrirano-tablica">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Naslov</th>
+						<th>Žanr</th>
+						<th>Godina</th>
+						<th>Trajanje</th>
+						<th>Zemlja</th>
+						<th>Ocjena</th>
+						<th>Košarica</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Dinamički popunjava pomoću script.js -->
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+
+	<!-- Zad3 -->
+	<aside id="kosarica-aside" class="kosarica-aside">
+
+		<div class="kosarica-zaglavlje">
+			<h3> Moja košarica </h3>
+			<button id="btn-zatvori-kosaricu" class="btn-zatvori" title="Zatvori">✕</button>
+		</div>
+
+		<!-- Lista odabranih filmova – dinamički popunjava script.js -->
+		<ul id="lista-kosarice" class="lista-kosarice"></ul>
+
+		<div class="kosarica-podnozje">
+			<button id="btn-potvrdi" class="btn-glavni btn-potvrdi">
+				✓ Potvrdi posudbu
+			</button>
+		</div>
+
+	</aside>
+
+	<div id="modal" class="modal-overlay">
+		<div class="modal-sadrzaj">
+			<div class="modal-ikona">✓</div>
+			<h3>Uspjeh!</h3>
+			<p id="modal-poruka"></p>
+			<button id="btn-zatvori-modal" class="btn-glavni">Zatvori</button>
+		</div>
+	</div>
+
+	<footer>
+		<p>&copy; 2025. Web Programiranje. Sva prava pridrzana.</p>
+	</footer>
+
+	<script src="script.js"></script>
+</body>
+
+</html>
