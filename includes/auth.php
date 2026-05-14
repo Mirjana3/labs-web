@@ -17,3 +17,10 @@ function currentUserId(): ?int {
 function currentUsername(): string {
     return $_SESSION['username'] ?? '';
 }
+
+function requireAdmin() {
+    if (!isAdmin()) {
+        http_response_code(403);
+        die('Pristup zabranjen.');
+    }
+}
